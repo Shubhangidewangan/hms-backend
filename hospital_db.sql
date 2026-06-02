@@ -1,0 +1,16 @@
+CREATE DATABASE hospital_db;
+USE hospital_db;
+CREATE TABLE patients (
+  patient_id INT AUTO_INCREMENT PRIMARY KEY,
+  patient_name VARCHAR(150) NOT NULL,
+  age INT NOT NULL,
+  disease VARCHAR(200) NOT NULL,
+  doctor_name VARCHAR(150) NOT NULL,
+  admit_date DATE NOT NULL,
+  created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  updated_at TIMESTAMP NULL ON UPDATE CURRENT_TIMESTAMP
+);
+
+SELECT * FROM patients;
+
+

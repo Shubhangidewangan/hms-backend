@@ -9,21 +9,20 @@ app.use(express.json());
 
 // DB CONNECTION
 const db = mysql.createConnection({
-  host: 'localhost',
-  user: 'root',
-  port: 3307,
-  password: 'shruti@18',
-  database: 'hospital_db'
+  host: process.env.MYSQLHOST,
+  user: process.env.MYSQLUSER,
+  password: process.env.MYSQLPASSWORD,
+  database: process.env.MYSQLDATABASE,
+  port: process.env.MYSQLPORT
 });
 
-db.connect(err => {
+db.connect((err) => {
   if (err) {
     console.log("DB ERROR:", err);
   } else {
-    console.log("DB Connected");
+    console.log("DB Connected Successfully");
   }
 });
-
 
 // =======================
 // GET ALL PATIENTS
@@ -142,6 +141,8 @@ app.delete('/patients/:id', (req, res) => {
 // =======================
 // START SERVER
 // =======================
-app.listen(3000, '0.0.0.0', () => {
-  console.log("Server running on 3000");
+const PORT = process.env.PORT || 3000;
+
+app.listen(PORT, () => {
+  console.log(`Server running on ${PORT}`);
 });
